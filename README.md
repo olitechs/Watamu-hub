@@ -100,7 +100,8 @@ watamu-hub/
     │   ├── status/          # Outage reports and vendors
     │   ├── transport/       # Price table and drivers
     │   ├── catch/           # Daily catch board
-    │   ├── villas/          # Public pages and owner dashboard
+    ├── villas/          # Public pages and owner dashboard
+│   ├── activities/        # Tourist activities page
 │   ├── properties/      # Real-estate landing page + [slug] detail pages
     │   ├── admin/           # Approvals and moderation
     │   └── api/             # votes, reports, ical, cron
