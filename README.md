@@ -22,6 +22,7 @@ Watamu Hub is a mobile-first web platform for residents, villa owners, workers a
 | **Transport Guide** | `/transport` | Fair, fixed prices for tuk-tuks, bodas, taxis and boat trips |
 | **Catch Board** | `/catch` | Today's fresh fish and market prices, auto-deleted after 24h |
 | **Villa Sync** | `/villas` | One live calendar merging Airbnb, Booking.com and manual bookings |
+| **Properties** | `/properties` | Premium real-estate landing page: villas, beachfront homes & land |
 
 ## Design principles
 
@@ -100,6 +101,7 @@ watamu-hub/
     │   ├── transport/       # Price table and drivers
     │   ├── catch/           # Daily catch board
     │   ├── villas/          # Public pages and owner dashboard
+│   ├── properties/      # Real-estate landing page + [slug] detail pages
     │   ├── admin/           # Approvals and moderation
     │   └── api/             # votes, reports, ical, cron
     ├── components/          # ui/, WhatsAppButton, ListingCard, Calendar
@@ -107,6 +109,42 @@ watamu-hub/
     ├── types/
     └── middleware.ts        # Route protection
 ```
+
+## Properties page
+
+The `/properties` route is a boutique-coastal-agency landing page for villas,
+beachfront homes and land in Watamu. Home (`/`) and the Villa Sync module
+(`/villas`) both link into it.
+
+**What's on it**
+
+1. Cinematic **video hero** (autoplay, muted, loop, `playsInline`,
+   `preload="metadata"`, poster fallback, dark-teal gradient overlay,
+   `prefers-reduced-motion` shows the poster instead) with a **glass search
+   bar** (location · type · budget) and a trust strip.
+2. **Featured listings** — glassmorphism property cards (frosted panel,
+   hover zoom, price badge, status tag, specs, feature chips, save heart,
+   WhatsApp button) with staggered scroll-reveal entrance. Filters are
+   server-rendered via `?area=&type=&budget=` (linkable/shareable).
+3. **Virtual tour preview** — framed poster + play button opening an
+   accessible modal (focus trap, Esc to close, scroll lock). Placeholder
+   clip until a real Matterport/YouTube URL is added; cards with a tour show
+   a 360° badge.
+4. **Why trust us** — proof points, stats, verified badges.
+5. **Agent profiles** — monogram avatar, role, languages, areas, prefilled
+   "Chat on WhatsApp".
+6. **Contact form** — Zod-validated, +254 normalisation, accessible errors,
+   success state; saves to Supabase `property_enquiries` **and** offers a
+   "Continue on WhatsApp" link with the details prefilled.
+7. Footer with contact, socials and a licence/legal line.
+
+Plus `/properties/[slug]` detail pages with per-listing `RealEstateListing`
+JSON-LD, and an `ItemList` on the index page.
+
+**Swapping the mock data for Supabase** — `src/lib/properties.ts` and
+`src/lib/agents.ts` are typed mock data; see `docs/PROPERTIES.md` for the
+step-by-step swap (queries, types, and the enquiry table migration
+`supabase/migrations/0002_property_enquiries.sql`).
 
 ## Data and security
 
