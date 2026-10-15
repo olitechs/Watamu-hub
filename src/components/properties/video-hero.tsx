@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { BadgeCheck, CalendarCheck, ShieldCheck } from "lucide-react";
+import { HeroVideo } from "./hero-video";
 import { SearchBar } from "./search-bar";
 
 const trustItems = [
@@ -11,15 +12,19 @@ const trustItems = [
 /**
  * Cinematic video hero.
  *
- * Video source: Mixkit free licence clip "Flying low over the sea of a
- * beach" (https://mixkit.co/free-stock-video/flying-low-over-the-sea-of-a-beach-44392/),
- * re-encoded locally to 15s / 1080p / ~2.6 MB. Never hotlinked.
+ * Video source: Mixkit free licence clip "Turquoise blue water bay from
+ * above"
+ * (https://mixkit.co/free-stock-video/turquoise-blue-water-bay-from-above-5008/)
+ * — a drone view over a turquoise coastal bay, standing in for the Watamu
+ * coastline. Re-encoded locally to 15s / 1080p / ~1.4 MB. Never hotlinked.
  *
  * Behaviour:
  *  - autoplay + muted + loop + playsInline, preload="metadata"
  *  - poster image fallback (also the reduced-motion visual)
  *  - dark-teal gradient overlay for text contrast
- *  - prefers-reduced-motion hides the <video> entirely (globals.css)
+ *  - <HeroVideo> re-asserts muted + play() after hydration and fades the
+ *    video in only once it is actually playing
+ *  - prefers-reduced-motion never starts the video (globals.css hides it)
  */
 export function VideoHero() {
   return (
@@ -35,20 +40,7 @@ export function VideoHero() {
         className="-z-20 object-cover"
       />
 
-      <video
-        className="hero-video absolute inset-0 -z-10 size-full object-cover"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster="/videos/hero-poster.jpg"
-        aria-hidden
-        tabIndex={-1}
-      >
-        <source src="/videos/watamu-coast-hero.webm" type="video/webm" />
-        <source src="/videos/watamu-coast-hero.mp4" type="video/mp4" />
-      </video>
+      <HeroVideo />
 
       {/* Dark-teal gradient overlay (WCAG AA text contrast over any frame) */}
       <div

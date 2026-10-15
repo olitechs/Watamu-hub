@@ -1,9 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Anchor, BarChart3, Bus, CheckCircle2, Fish, Search } from "lucide-react";
+import { Anchor, BarChart3, Bus, CheckCircle2, Fish, Search, Sailboat } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 
 const modules = [
+  {
+    href: "/activities",
+    icon: Sailboat,
+    title: "Activities",
+    body: "Snorkelling, dhow cruises, bird walks and Swahili history — booked on WhatsApp.",
+    live: true,
+    accent: "bg-sun text-night",
+  },
   {
     href: "/properties",
     icon: Search,
@@ -11,6 +19,14 @@ const modules = [
     body: "Verified villas, beachfront homes and land in Watamu — with virtual tours and local agents.",
     live: true,
     accent: "bg-coral text-night",
+  },
+  {
+    href: "/villas",
+    icon: Anchor,
+    title: "Villa Sync",
+    body: "One live calendar merging Airbnb, Booking.com and manual bookings for villa owners.",
+    live: true,
+    accent: "bg-lagoon text-white",
   },
   {
     href: "/villas",
@@ -113,7 +129,7 @@ export default function HomePage() {
               Everything Watamu, in one calm place
             </h2>
             <p className="mt-3 max-w-xl text-night/70">
-              Five tools, each built to run itself. Two are live today.
+              Six tools, each built to run itself. Three are live today.
             </p>
           </Reveal>
 

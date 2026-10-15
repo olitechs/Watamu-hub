@@ -54,6 +54,11 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
+                <Link className="text-white/70 hover:text-white hover:underline hover:underline-offset-4" href="/activities">
+                  Activities
+                </Link>
+              </li>
+              <li>
                 <Link className="text-white/70 hover:text-white hover:underline hover:underline-offset-4" href="/properties#enquire">
                   Book a viewing
                 </Link>

@@ -138,11 +138,9 @@
     transform: none;
   }
 
-  /* ---- Hero video --------------------------------------------------- */
-  .hero-video {
-    opacity: 0;
-    animation: hero-fade 0.9s ease-out 0.15s forwards;
-  }
+  /* ---- Hero video ---------------------------------------------------
+     Opacity is controlled by <HeroVideo> (fades in once actually
+     playing); reduced-motion hides it entirely below. */
 
   /* ---- Skeleton shimmer for image placeholders ---------------------- */
   .shimmer {
@@ -154,12 +152,6 @@
     );
     background-size: 200% 100%;
     animation: shimmer 1.6s ease-in-out infinite;
-  }
-}
-
-@keyframes hero-fade {
-  to {
-    opacity: 1;
   }
 }
 
