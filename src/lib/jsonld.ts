@@ -64,3 +64,37 @@ export function buildListingJsonLd(property: {
 }
 
 export { buildAgencyJsonLd as buildEnquiryJsonLd };
+
+/** TouristAttraction JSON-LD for /activities/[slug] detail pages. No price or offers. */
+export function buildTouristAttractionJsonLd({
+  title,
+  description,
+  location,
+  area,
+  image,
+}: {
+  title: string;
+  description: string;
+  location: string;
+  area: string;
+  image: { src: string; alt: string };
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "TouristAttraction",
+    name: title,
+    description,
+    location: {
+      "@type": "Place",
+      name: location,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: area === "watamu" ? "Watamu" : area === "malindi" ? "Malindi" : "Marafa",
+        addressRegion: "Kilifi County",
+        addressCountry: "KE",
+      },
+    },
+    image: image.src,
+    tourismType: "Cultural site",
+  };
+}

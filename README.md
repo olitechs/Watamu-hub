@@ -111,6 +111,74 @@ watamu-hub/
     └── middleware.ts        # Route protection
 ```
 
+## Activities page
+
+The `/activities` route is a tourist-activities landing page for Watamu,
+Malindi and Marafa. The header, home page hero and footer already link into
+it (the `Activities` nav item is wired in `src/components/site-header.tsx`).
+
+**What's on it**
+
+1. Calm hero with the headline “Things to do in Watamu, Malindi and Marafa”
+   and a one-line subtext (server component, no video).
+2. **Area filter tabs** — All / Watamu / Malindi / Marafa — implemented as
+   real `<Link>` buttons to `/activities?area=...`. The filter is
+   server-rendered via the `?area=` query param, so filtered views are
+   shareable and work without client JS.
+3. **Responsive grid of activity cards** — cover photo, area tag, category
+   chip, title, location, short intro, duration/best-time line and a
+   “Read the story” affordance. The whole card is a link to the detail page.
+4. **`/activities/[slug]` detail page** — `generateStaticParams` + per-page
+   `generateMetadata` with Open Graph image from the activity's first photo.
+   Layout: title · area · location · category, then a 4-photo gallery,
+   “The history”, “The story” (pull-quote intro), “Highlights”, a small
+   “Good to know” info panel (best time + duration, **no price**), a
+   “More in {area}” row of related cards, and an “Ask on WhatsApp” CTA with
+   a prefilled message built by `lib/whatsapp.ts`. A keyboard-accessible
+   lightbox covers the gallery (arrow keys, Esc, focus management).
+5. **JSON-LD** — `TouristAttraction` from `lib/jsonld.ts` on every detail
+   page (no offers/price fields).
+
+**Glass card style** — the activity card reuses the same frosted panel,
+hover zoom and shadow language as the property cards in
+`src/components/properties/`. Scroll-reveal and hover treatment come from
+`src/components/reveal.tsx` and respect `prefers-reduced-motion`.
+
+**Photos**
+
+Each activity has exactly 4 photos in
+`public/images/activities/{slug}/1.jpg` … `4.jpg`. Blur-up placeholders are
+auto-generated into `src/lib/lqip.ts` by:
+
+```bash
+node scripts/generate-lqip.mjs
+```
+
+Run that after adding or replacing any activity photo. The placeholder
+generator for missing photos is `scripts/gen-activity-placeholders.mjs`.
+
+**Adding a new activity**
+
+1. Add a new entry to the `activities` array in `src/lib/activities.ts`.
+   Give it a unique `slug`, `title`, `area` (`"watamu" | "malindi" |
+   "marafa"`), `location`, `category`, `intro`, `history` (string array),
+   `story` (string array), `highlights` (3–5 short bullets), optional
+   `bestTime` / `duration`, and exactly 4 `photos`.
+2. Drop 4 JPGs into `public/images/activities/{slug}/1.jpg` … `4.jpg`.
+   Edit widths/heights/alt text in the data entry to match.
+3. Regenerate blur placeholders: `node scripts/generate-lqip.mjs`.
+4. Add a `// TODO verify` comment for anything factual you are unsure of,
+   then list that item here for review.
+
+**No prices on activities.** The activities data model and pages do **not**
+carry any price, “from KES”, rate or budget. The CTA is “Ask on WhatsApp”
+with a prefilled enquiry message instead of “Book now”.
+
+**Content sourcing.** Activity copy is written from the demo descriptions
+and general knowledge of the Watamu / Malindi / Marafa area. Anything
+uncertain is marked with a `// TODO verify` comment in
+`src/lib/activities.ts`.
+
 ## Properties page
 
 The `/properties` route is a boutique-coastal-agency landing page for villas,
