@@ -1,6 +1,7 @@
 // GENERATED FILE — do not edit by hand.
 // Regenerate with: node scripts/generate-lqip.mjs
 // Tiny (20px) base64 JPEG blur-up placeholders keyed by public path.
+// Covers public/images/ recursively (properties, activities, tour, brand).
 
 export const lqip: Record<string, string> = {
   "/images/activities/arabuko-sokoke-forest-trip/1.jpg": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD//gARTGF2YzU4LjEzNC4xMDAA/9sAQwAIDAwODA4QEBAQEBATEhMUFBQTExMTFBQUFRUVGRkZFRUVFBQVFRgYGRkbHBsaGhkaHBweHh4kJCIiKiorMzM+/8QAVQABAQEBAAAAAAAAAAAAAAAAAAECBgEBAQEAAAAAAAAAAAAAAAAABAABEAEBAQEBAQAAAAAAAAAAAAAAEQEhAlERAQEAAAAAAAAAAAAAAAAAAAAh/8AAEQgADwAUAwEiAAIRAAMRAP/aAAwDAQACEQMRAD8A6nuk9fNYWgUurSsirK//2Q==",
