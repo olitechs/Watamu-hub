@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Anchor, BarChart3, Bus, CheckCircle2, Fish, Search, Sailboat } from "lucide-react";
 import { Reveal } from "@/components/reveal";
+import { HeroVideo } from "@/components/properties/hero-video";
 
 const modules = [
   {
@@ -29,14 +30,6 @@ const modules = [
     accent: "bg-lagoon text-white",
   },
   {
-    href: "/villas",
-    icon: Anchor,
-    title: "Villa Sync",
-    body: "One live calendar merging Airbnb, Booking.com and manual bookings for villa owners.",
-    live: true,
-    accent: "bg-lagoon text-white",
-  },
-  {
     href: "#",
     icon: CheckCircle2,
     title: "Fundi Finder",
@@ -45,19 +38,19 @@ const modules = [
     accent: "bg-sun text-night",
   },
   {
-    href: "#",
+    href: "/status",
     icon: BarChart3,
     title: "Status Board",
-    body: "Water, power and gas updates for Watamu, in one place.",
-    live: false,
-    accent: "bg-lagoon-soft text-night",
+    body: "Water, power and gas outages — and who delivers when they're out.",
+    live: true,
+    accent: "bg-lagoon text-white",
   },
   {
-    href: "#",
+    href: "/transport",
     icon: Bus,
     title: "Transport Guide",
-    body: "Fair, fixed prices for tuk-tuks, bodas and boat trips.",
-    live: false,
+    body: "Fair, fixed prices for tuk-tuks, bodas, taxis and boat trips.",
+    live: true,
     accent: "bg-lagoon-soft text-night",
   },
   {
@@ -71,24 +64,24 @@ const modules = [
 ];
 
 /**
- * Watamu Hub home page. Kept intentionally lean: brand hero, the module
- * grid (Properties and Villa Sync are live), and a featured strip that
- * routes into /properties.
+ * Watamu Hub home page. Kept intentionally lean: cinematic video hero,
+ * the module grid (Properties, Villa Sync, Status Board and Transport Guide
+ * are live), and a featured strip that routes into /properties.
+ *
+ * Hero video:
+ *  - Uses the same existing coast hero video as /properties
+ *    (public/videos/watamu-coast-hero.{webm,mp4}) and the same poster
+ *    (public/videos/hero-poster.jpg), so no new video asset is added for this
+ *    request.
+ *  - Under prefers-reduced-motion the video is never started and globals.css
+ *    hides the .hero-video layer entirely, so the poster is the experience.
  */
 export default function HomePage() {
   return (
     <>
       {/* Hero */}
       <section className="on-dark relative isolate overflow-hidden bg-night">
-        <Image
-          src="/images/properties/reef-aerial.jpg"
-          alt="Aerial view of the turquoise reef and shallows off the Watamu coast"
-          width={1400}
-          height={932}
-          priority
-          sizes="100vw"
-          className="absolute inset-0 -z-10 size-full object-cover opacity-70"
-        />
+        <HeroVideo />
         <div
           aria-hidden
           className="absolute inset-0 -z-10 bg-gradient-to-b from-night/70 via-night/50 to-night/95"

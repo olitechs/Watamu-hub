@@ -3,6 +3,7 @@ import Link from "next/link";
 import { MapPin, Clock } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import type { Activity } from "@/lib/activities";
+import { blurFor } from "@/lib/lqip";
 
 interface ActivityCardProps {
   activity: Activity;
@@ -24,6 +25,7 @@ export function ActivityCard({ activity, index }: ActivityCardProps) {
             width={1200}
             height={900}
             placeholder="blur"
+            blurDataURL={blurFor(firstPhoto.src)}
             loading="lazy"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"

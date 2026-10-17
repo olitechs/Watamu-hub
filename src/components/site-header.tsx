@@ -11,6 +11,8 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/properties", label: "Properties" },
   { href: "/activities", label: "Activities" },
+  { href: "/status", label: "Status" },
+  { href: "/transport", label: "Transport" },
   { href: "/villas", label: "Villas" },
 ];
 
@@ -61,7 +63,7 @@ export function SiteHeader() {
           Watamu<span className="text-lagoon">Hub</span>
         </Link>
 
-        <nav aria-label="Main" className="hidden items-center gap-7 md:flex">
+        <nav aria-label="Main" className="hidden items-center gap-5 md:flex lg:gap-7">
           {navLinks.map((link) => (
             <Link
               key={link.href}

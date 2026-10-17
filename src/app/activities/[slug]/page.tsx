@@ -14,6 +14,10 @@ import {
 import { whatsappLink } from "@/lib/whatsapp";
 import { buildTouristAttractionJsonLd } from "@/lib/jsonld";
 
+// `await params` is accessed below outside <Suspense>; allow the blocking
+// read so prerendering/navigation stays instant (same as the other routes).
+export const instant = false;
+
 export async function generateStaticParams() {
   return activities.map((a) => ({ slug: a.slug }));
 }

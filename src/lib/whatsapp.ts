@@ -25,6 +25,25 @@ export function propertyWhatsappMessage(title: string, area: string): string {
   return `Hello Watamu Hub 👋 I'm interested in "${title}" in ${area}. Is it still available? I found it on your properties page.`;
 }
 
+/** Prefilled Status Board report (outage / back-on) for the WhatsApp fallback. */
+export function statusWhatsappMessage(details: {
+  utility: "water" | "power" | "gas";
+  kind: "outage" | "back";
+  area: string;
+  note?: string;
+  phone?: string;
+}): string {
+  const label = details.utility === "gas" ? "gas (LPG)" : details.utility;
+  const headline =
+    details.kind === "back"
+      ? `Hello Watamu Hub 👋 Heads up: ${label} is back on in ${details.area}.`
+      : `Hello Watamu Hub 👋 Heads up: ${label} is OUT in ${details.area}.`;
+  const lines = [headline];
+  if (details.note) lines.push("", details.note);
+  if (details.phone) lines.push("", `My number: ${details.phone}`);
+  return lines.join("\n");
+}
+
 /** Prefilled enquiry summary used by the "Continue on WhatsApp" fallback. */
 export function enquiryWhatsappMessage(details: {
   name: string;

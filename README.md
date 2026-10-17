@@ -226,7 +226,7 @@ step-by-step swap (queries, types, and the enquiry table migration
 ## Roadmap
 
 - [ ] **Phase 1:** Foundation, auth, Fundi Finder
-- [ ] **Phase 2:** Status Board and Transport Guide
+- [x] **Phase 2:** Status Board and Transport Guide
 - [ ] **Phase 3:** Catch Board
 - [ ] **Phase 4:** Villa Sync (iCal merge, owner dashboard)
 - [ ] **Later:** Swahili toggle, PWA install, featured/verified listings, M-Pesa payments

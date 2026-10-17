@@ -3,7 +3,15 @@ export const instant = false;
 import Link from "next/link";
 import { ActivityCard } from "@/components/activities/activity-card";
 import { ActivityFilterTabs } from "@/components/activities/activity-filter-tabs";
+import { HeroZoom } from "@/components/activities/hero-zoom";
 import { activities, filterByArea } from "@/lib/activities";
+
+const ACTIVITIES_OG_IMAGE = {
+  url: "/images/activities/marine-park-snorkelling/1.jpg",
+  width: 1200,
+  height: 900,
+  alt: "Snorkeller over coral in clear shallow water",
+};
 
 export const metadata: Metadata = {
   title: "Things to do in Watamu, Malindi and Marafa",
@@ -14,14 +22,7 @@ export const metadata: Metadata = {
     title: "Things to do in Watamu, Malindi and Marafa — Watamu Hub",
     description: "Handpicked things to do along the Kenyan coast. Ask on WhatsApp for details.",
     url: "/activities",
-    images: [
-      {
-        url: "/images/activities/marine-park-snorkelling/1.jpg",
-        width: 1200,
-        height: 900,
-        alt: "Snorkeller over coral in clear shallow water",
-      },
-    ],
+    images: [ACTIVITIES_OG_IMAGE],
   },
 };
 
@@ -38,7 +39,8 @@ export default async function ActivitiesPage({
     <>
       {/* Hero */}
       <section className="on-dark relative isolate flex min-h-[55svh] flex-col justify-end overflow-hidden bg-night">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-night/80 via-night/40 to-night/95" />
+        <HeroZoom />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-night/80 via-night/45 to-night/95" />
         <div className="mx-auto w-full max-w-6xl px-4 pt-32 pb-14 sm:px-6 sm:pb-20">
           <p className="text-sm font-semibold tracking-[0.2em] text-sun uppercase">Things to do</p>
           <h1 className="mt-4 max-w-3xl text-4xl leading-[1.05] font-semibold text-white text-balance sm:text-6xl">

@@ -68,6 +68,16 @@ export function SiteFooter() {
                   Villa Sync
                 </Link>
               </li>
+              <li>
+                <Link className="text-white/70 hover:text-white hover:underline hover:underline-offset-4" href="/status">
+                  Status Board
+                </Link>
+              </li>
+              <li>
+                <Link className="text-white/70 hover:text-white hover:underline hover:underline-offset-4" href="/transport">
+                  Transport Guide
+                </Link>
+              </li>
             </ul>
           </div>
 

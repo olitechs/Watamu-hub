@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import type { ActivityPhoto } from "@/lib/activities";
+import { blurFor } from "@/lib/lqip";
 
 interface GalleryPhotoProps {
   photo: ActivityPhoto;
@@ -22,6 +23,7 @@ export function GalleryPhoto({ photo, index, total }: GalleryPhotoProps) {
         width={1200}
         height={900}
         placeholder="blur"
+        blurDataURL={blurFor(photo.src)}
         loading="lazy"
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"

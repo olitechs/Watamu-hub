@@ -140,19 +140,51 @@
 
   /* ---- Hero video ---------------------------------------------------
      Opacity is controlled by <HeroVideo> (fades in once actually
-     playing); reduced-motion hides it entirely below. */
+     playing); reduced-motion hides it entirely below. *//* ---- Hero zoom (drone-style sky-to-ground) -------------------------
+   The activities hero uses an existing in-repo drone video plus a slow
+   downward zoom crop. The live video + poster are both scaled taller than
+   the viewport so the visible window can drift from the upper frame toward
+   the ground/shoreline without reflowing the page. */
 
-  /* ---- Skeleton shimmer for image placeholders ---------------------- */
-  .shimmer {
-    background-image: linear-gradient(
-      100deg,
-      rgb(11 42 60 / 0.06) 40%,
-      rgb(11 42 60 / 0.14) 50%,
-      rgb(11 42 60 / 0.06) 60%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 1.6s ease-in-out infinite;
+.hero-zoom-video {
+  transform: scale(1);
+  will-change: opacity;
+}
+
+.hero-zoom {
+  will-change: transform;
+}
+
+.hero-zoom-target {
+  will-change: transform;
+}
+
+@keyframes zoom-sky-to-ground {
+  from {
+    transform: scale(1) translateY(0);
   }
+  to {
+    /* Move the visible crop downward and slightly tighter so the frame
+        reads as a slow descent from sky toward the ground. */
+    transform: scale(1.08) translateY(8%);
+  }
+}
+
+.animate-zoom-sky-to-ground {
+  animation: zoom-sky-to-ground 18s ease-in-out infinite alternate;
+}
+
+/* ---- Skeleton shimmer for image placeholders ---------------------- */
+.shimmer {
+  background-image: linear-gradient(
+    100deg,
+    rgb(11 42 60 / 0.06) 40%,
+    rgb(11 42 60 / 0.14) 50%,
+    rgb(11 42 60 / 0.06) 60%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
 }
 
 @keyframes shimmer {
